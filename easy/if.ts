@@ -19,6 +19,8 @@
 
 /* _____________ Your Code Here _____________ */
 
+// C accepts boolean type, and if C is expected to be true returns T otherwise return F;
+
 type If<C extends boolean, T, F> = C extends true ? T : F;
 
 /* _____________ Test Cases _____________ */
