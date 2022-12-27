@@ -16,12 +16,22 @@
   > View on GitHub: https://tsch.js.org/898
 */
 
+import type { Equal, Expect } from "@type-challenges/utils";
+
 /* _____________ Your Code Here _____________ */
 
-type Includes<T extends unknown[], U> = U extends T[number] ? true : false;
+// T의 원소를 U와 하나씩 비교해가면서 true, false를 반환합니다. First와 U를 비교해서 false를 반환할시 Includes에 Rest 원소들을 하나씩 넣어 비교해봅니다.
+
+type Includes<T extends readonly any[], U> = T extends [
+  infer First,
+  ...infer Rest
+]
+  ? Equal<U, First> extends true
+    ? true
+    : Includes<Rest, U>
+  : false;
 
 /* _____________ Test Cases _____________ */
-import type { Equal, Expect } from "@type-challenges/utils";
 
 type cases = [
   Expect<
